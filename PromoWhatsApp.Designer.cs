@@ -60,6 +60,7 @@
             mensajesPersonalizadosToolStripMenuItem.Name = "mensajesPersonalizadosToolStripMenuItem";
             mensajesPersonalizadosToolStripMenuItem.Size = new Size(149, 20);
             mensajesPersonalizadosToolStripMenuItem.Text = "Mensajes Personalizados";
+            mensajesPersonalizadosToolStripMenuItem.Click += mensajesPersonalizadosToolStripMenuItem_Click;
             // 
             // toolStripContainer1
             // 
