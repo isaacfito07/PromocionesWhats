@@ -52,3 +52,17 @@ CodeCoverage/
 *.VisualState.xml
 TestResult.xml
 nunit-*.xml
+
+# Archivos y carpetas de Visual Studio
+.vs/
+*.user
+*.suo
+*.sln.docstates
+
+# Rider/ReSharper
+.ReSharper*/
+*.DotSettings.user
+
+# Archivos de configuración de entorno
+*.code-workspace
+.idea/

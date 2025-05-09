@@ -67,7 +67,7 @@
             // toolStripContainer1.ContentPanel
             // 
             toolStripContainer1.ContentPanel.Controls.Add(GVExcel);
-            toolStripContainer1.ContentPanel.Size = new Size(800, 426);
+            toolStripContainer1.ContentPanel.Size = new Size(800, 401);
             toolStripContainer1.Dock = DockStyle.Fill;
             toolStripContainer1.Location = new Point(0, 24);
             toolStripContainer1.Name = "toolStripContainer1";
@@ -88,7 +88,7 @@
             GVExcel.RowHeadersVisible = false;
             GVExcel.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             GVExcel.SelectionMode = DataGridViewSelectionMode.CellSelect;
-            GVExcel.Size = new Size(800, 426);
+            GVExcel.Size = new Size(800, 401);
             GVExcel.TabIndex = 0;
             // 
             // PromoWhats
