@@ -74,8 +74,11 @@ namespace PromWhats
 
         private void mensajesPersonalizadosToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Mensajes mensajes = new Mensajes();
-            mensajes.ShowDialog();
+            /*Mensajes mensajes = new Mensajes();
+            mensajes.ShowDialog();*/
+
+            ListaMensajes listaMensajes = new ListaMensajes();
+            listaMensajes.ShowDialog();
         }
     }
 }

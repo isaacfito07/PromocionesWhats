@@ -38,6 +38,7 @@
             txtNombreMensaje = new TextBox();
             menuStrip1 = new MenuStrip();
             primerToolStripMenuItem = new ToolStripMenuItem();
+            CheckActivo = new CheckBox();
             tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)PBImagen).BeginInit();
             ((System.ComponentModel.ISupportInitialize)splitContainer1).BeginInit();
@@ -88,6 +89,7 @@
             // 
             // splitContainer1.Panel1
             // 
+            splitContainer1.Panel1.Controls.Add(CheckActivo);
             splitContainer1.Panel1.Controls.Add(label1);
             splitContainer1.Panel1.Font = new Font("Segoe UI", 20.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             // 
@@ -128,6 +130,7 @@
             btnGuardar.TabIndex = 2;
             btnGuardar.Text = "Guardar";
             btnGuardar.UseVisualStyleBackColor = true;
+            btnGuardar.Click += btnGuardar_Click;
             // 
             // txtNombreMensaje
             // 
@@ -155,6 +158,18 @@
             primerToolStripMenuItem.Size = new Size(51, 20);
             primerToolStripMenuItem.Text = "Volver";
             primerToolStripMenuItem.Click += primerToolStripMenuItem_Click;
+            // 
+            // CheckActivo
+            // 
+            CheckActivo.AutoSize = true;
+            CheckActivo.Checked = true;
+            CheckActivo.CheckState = CheckState.Checked;
+            CheckActivo.Location = new Point(407, -7);
+            CheckActivo.Name = "CheckActivo";
+            CheckActivo.Size = new Size(119, 41);
+            CheckActivo.TabIndex = 1;
+            CheckActivo.Text = "Activo";
+            CheckActivo.UseVisualStyleBackColor = true;
             // 
             // Mensajes
             // 
@@ -195,5 +210,6 @@
         private TextBox txtMensaje;
         private Button btnGuardar;
         private TextBox txtNombreMensaje;
+        private CheckBox CheckActivo;
     }
 }
