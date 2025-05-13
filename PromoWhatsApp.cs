@@ -176,8 +176,22 @@ namespace PromWhats
                             }
 
                             await Task.Delay(5000);
+                            if (cancelarProceso)
+                            {
+                                MessageBox.Show("Proceso detenido por el usuario", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                dETENERPROCESOToolStripMenuItem.Visible = false;
+                                this.TopMost = false;
+                                return;
+                            }
                             SendKeys.Send("{ENTER}");
-                            await Task.Delay(5000);
+                            await Task.Delay(3000);
+                            if (cancelarProceso)
+                            {
+                                MessageBox.Show("Proceso detenido por el usuario", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                dETENERPROCESOToolStripMenuItem.Visible = false;
+                                this.TopMost = false;
+                                return;
+                            }
                             SendKeys.Send("^v");
 
                             string RutaImagen = row.Cells["rutaImagen"].Value.ToString();
@@ -187,9 +201,16 @@ namespace PromWhats
                                 {
                                     Clipboard.SetImage(img);
                                 }
-                                await Task.Delay(5000);
+                                await Task.Delay(3000);
                                 SendKeys.Send("^v");
-                                await Task.Delay(5000);
+                                if (cancelarProceso)
+                                {
+                                    MessageBox.Show("Proceso detenido por el usuario", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                    dETENERPROCESOToolStripMenuItem.Visible = false;
+                                    this.TopMost = false;
+                                    return;
+                                }
+                                await Task.Delay(3000);
                             }
 
                             SendKeys.Send("{ENTER}");
@@ -214,13 +235,36 @@ namespace PromWhats
                                 "'" + FechaHoy + "');";
 
                             this.sql.EjecutarComando(queryInsert);
-                            await Task.Delay(5000);
+                            await Task.Delay(3000);
+                            if (cancelarProceso)
+                            {
+                                MessageBox.Show("Proceso detenido por el usuario", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                dETENERPROCESOToolStripMenuItem.Visible = false;
+                                this.TopMost = false;
+                                return;
+                            }
+                            SendKeys.Send("{ESC}");
+                            await Task.Delay(3000);
+                            if (cancelarProceso)
+                            {
+                                MessageBox.Show("Proceso detenido por el usuario", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                dETENERPROCESOToolStripMenuItem.Visible = false;
+                                this.TopMost = false;
+                                return;
+                            }
 
                             foreach (var process in Process.GetProcessesByName("chrome"))
                             {
                                 process.Kill();
                             }
                             await Task.Delay(5000);
+                            if (cancelarProceso)
+                            {
+                                MessageBox.Show("Proceso detenido por el usuario", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                dETENERPROCESOToolStripMenuItem.Visible = false;
+                                this.TopMost = false;
+                                return;
+                            }
                         }
                     }
                 }
