@@ -137,9 +137,9 @@ namespace PromWhats
                 {
                     if (cancelarProceso)
                     {
+                        this.TopMost = false;
                         MessageBox.Show("Proceso detenido por el usuario", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         dETENERPROCESOToolStripMenuItem.Visible = false;
-                        this.TopMost = false;
                         return;
                     }
 
@@ -178,18 +178,18 @@ namespace PromWhats
                             await Task.Delay(5000);
                             if (cancelarProceso)
                             {
+                                this.TopMost = false;
                                 MessageBox.Show("Proceso detenido por el usuario", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
                                 dETENERPROCESOToolStripMenuItem.Visible = false;
-                                this.TopMost = false;
                                 return;
                             }
                             SendKeys.Send("{ENTER}");
                             await Task.Delay(3000);
                             if (cancelarProceso)
                             {
+                                this.TopMost = false;
                                 MessageBox.Show("Proceso detenido por el usuario", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
                                 dETENERPROCESOToolStripMenuItem.Visible = false;
-                                this.TopMost = false;
                                 return;
                             }
                             SendKeys.Send("^v");
@@ -205,9 +205,9 @@ namespace PromWhats
                                 SendKeys.Send("^v");
                                 if (cancelarProceso)
                                 {
+                                    this.TopMost = false;
                                     MessageBox.Show("Proceso detenido por el usuario", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
                                     dETENERPROCESOToolStripMenuItem.Visible = false;
-                                    this.TopMost = false;
                                     return;
                                 }
                                 await Task.Delay(3000);
@@ -238,18 +238,18 @@ namespace PromWhats
                             await Task.Delay(3000);
                             if (cancelarProceso)
                             {
+                                this.TopMost = false;
                                 MessageBox.Show("Proceso detenido por el usuario", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
                                 dETENERPROCESOToolStripMenuItem.Visible = false;
-                                this.TopMost = false;
                                 return;
                             }
                             SendKeys.Send("{ESC}");
                             await Task.Delay(3000);
                             if (cancelarProceso)
                             {
+                                this.TopMost = false;
                                 MessageBox.Show("Proceso detenido por el usuario", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
                                 dETENERPROCESOToolStripMenuItem.Visible = false;
-                                this.TopMost = false;
                                 return;
                             }
 
@@ -260,9 +260,9 @@ namespace PromWhats
                             await Task.Delay(5000);
                             if (cancelarProceso)
                             {
+                                this.TopMost = false;
                                 MessageBox.Show("Proceso detenido por el usuario", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
                                 dETENERPROCESOToolStripMenuItem.Visible = false;
-                                this.TopMost = false;
                                 return;
                             }
                         }
