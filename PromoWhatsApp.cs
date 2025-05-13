@@ -158,7 +158,9 @@ namespace PromWhats
                             string numero = "52" + row.Cells["CELULAR"].Value?.ToString();
                             string mensaje = row.Cells["cuerpoMensaje"].Value?.ToString();
 
-                            string url = "https://api.whatsapp.com/send?phone=" + numero + "&text=" + Uri.EscapeDataString(mensaje) + "&type=phone_number&app_absent=0";
+                            Clipboard.SetText(mensaje);
+
+                            string url = "https://api.whatsapp.com/send?phone=" + numero + "&text=" + "" + "&type=phone_number&app_absent=0";
 
                             if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
                             {
@@ -173,6 +175,11 @@ namespace PromWhats
                                 Process.Start("open", url);
                             }
 
+                            await Task.Delay(5000);
+                            SendKeys.Send("{ENTER}");
+                            await Task.Delay(5000);
+                            SendKeys.Send("^v");
+
                             string RutaImagen = row.Cells["rutaImagen"].Value.ToString();
                             if (!string.IsNullOrEmpty(RutaImagen))
                             {
@@ -182,7 +189,7 @@ namespace PromWhats
                                 }
                                 await Task.Delay(5000);
                                 SendKeys.Send("^v");
-                                await Task.Delay(9000);
+                                await Task.Delay(5000);
                             }
 
                             SendKeys.Send("{ENTER}");
@@ -213,6 +220,7 @@ namespace PromWhats
                             {
                                 process.Kill();
                             }
+                            await Task.Delay(5000);
                         }
                     }
                 }
