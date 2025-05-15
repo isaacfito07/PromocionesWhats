@@ -15,21 +15,7 @@ namespace PromWhats
         }
         private void ListaMensajes_Load(object sender, EventArgs e)
         {
-            int idEstadoActivo = 1;
-
-            string query = "select idMensaje AS id, nombreMensaje AS Nombre, IIF(Activo = 1, 'Activo', 'Inactivo') AS Status from Mensajes WHERE Activo =" + idEstadoActivo;
-            DataTable dt = sql.EjecutarConsulta(query);
-            GVListaMensajes.DataSource = dt;
-
-            if (!GVListaMensajes.Columns.Contains("btnAccion"))
-            {
-                DataGridViewButtonColumn btnCol = new DataGridViewButtonColumn();
-                btnCol.Name = "btnAccion";
-                btnCol.HeaderText = "";
-                btnCol.Text = "Editar";
-                btnCol.UseColumnTextForButtonValue = true; // Usa el mismo texto en cada botón
-                GVListaMensajes.Columns.Add(btnCol);
-            }
+            BuscarMensjaes();
         }
 
         private void btnVolver_Click(object sender, EventArgs e)
@@ -59,6 +45,7 @@ namespace PromWhats
         {
             Mensajes msg = new Mensajes();
             msg.ShowDialog();
+            BuscarMensjaes();
         }
 
         private void GVListaMensajes_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -71,6 +58,27 @@ namespace PromWhats
 
                 Mensajes msg = new Mensajes(Convert.ToInt32(idMensaje));
                 msg.ShowDialog();
+            }
+        }
+
+        private void BuscarMensjaes()
+        {
+            GVListaMensajes.DataSource = new DataTable();
+            GVListaMensajes.Columns.Clear();
+
+            int idEstadoActivo = 1;
+            string query = "select idMensaje AS id, nombreMensaje AS Nombre, IIF(Activo = 1, 'Activo', 'Inactivo') AS Status from Mensajes WHERE Activo =" + idEstadoActivo;
+            DataTable dt = sql.EjecutarConsulta(query);
+            GVListaMensajes.DataSource = dt;
+
+            if (!GVListaMensajes.Columns.Contains("btnAccion"))
+            {
+                DataGridViewButtonColumn btnCol = new DataGridViewButtonColumn();
+                btnCol.Name = "btnAccion";
+                btnCol.HeaderText = "";
+                btnCol.Text = "Editar";
+                btnCol.UseColumnTextForButtonValue = true; // Usa el mismo texto en cada botón
+                GVListaMensajes.Columns.Add(btnCol);
             }
         }
     }
