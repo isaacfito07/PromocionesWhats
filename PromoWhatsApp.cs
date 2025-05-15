@@ -3,6 +3,7 @@ using Microsoft.Data.Sqlite;
 using System.Data;
 using System.Data.SQLite;
 using System.Diagnostics;
+using System.Globalization;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
 using Excel = Microsoft.Office.Interop.Excel;
@@ -145,7 +146,9 @@ namespace PromWhats
 
                     if (!row.IsNewRow)
                     {
-                        string querySelect = "SELECT * FROM WhatsApp WHERE Celular = '" + row.Cells["CELULAR"].Value + "' AND Fecha = '" + FechaHoy + "'";
+                        row.Selected = true;
+
+                        string querySelect = "SELECT * FROM WhatsApp WHERE Celular = '" + row.Cells["CELULAR"].Value + "' AND Activo = 1 AND Fecha = '" + FechaHoy + "'";
                         DataTable dtConsula = this.sql.EjecutarConsulta(querySelect);
 
                         if (dtConsula.Rows.Count > 0)
@@ -154,9 +157,12 @@ namespace PromWhats
                         }
                         else
                         {
-
-                            string numero = "52" + row.Cells["CELULAR"].Value?.ToString();
+                            string numero = "52" + (row.Cells["CELULAR"].Value?.ToString()).Replace(" ",string.Empty).Replace("-",string.Empty);
                             string mensaje = row.Cells["cuerpoMensaje"].Value?.ToString();
+
+                            string NombreContacto = row.Cells["NOMBRE (S)"].Value?.ToString();
+                            NombreContacto = CapitalizeEachWord(NombreContacto);
+                            mensaje = mensaje.Replace("[Nombre]", NombreContacto);
 
                             Clipboard.SetText(mensaje);
 
@@ -164,7 +170,7 @@ namespace PromWhats
 
                             if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
                             {
-                                Process.Start(new ProcessStartInfo(url) { UseShellExecute = true });
+                                //Process.Start(new ProcessStartInfo(url) { UseShellExecute = true });
                             }
                             else if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
                             {
@@ -183,6 +189,7 @@ namespace PromWhats
                                 dETENERPROCESOToolStripMenuItem.Visible = false;
                                 return;
                             }
+                            
                             SendKeys.Send("{ENTER}");
                             await Task.Delay(3000);
                             if (cancelarProceso)
@@ -255,7 +262,7 @@ namespace PromWhats
 
                             foreach (var process in Process.GetProcessesByName("chrome"))
                             {
-                                process.Kill();
+                                //process.Kill();
                             }
                             await Task.Delay(5000);
                             if (cancelarProceso)
@@ -339,6 +346,21 @@ namespace PromWhats
             }
 
             ExportarAExcel(GVExcel);
+        }
+
+        private void enviadosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Enviados enviados = new Enviados();
+            enviados.ShowDialog();
+        }
+
+        public static string CapitalizeEachWord(string input)
+        {
+            if (string.IsNullOrWhiteSpace(input))
+                return input;
+
+            TextInfo textInfo = CultureInfo.CurrentCulture.TextInfo;
+            return textInfo.ToTitleCase(input.ToLower());
         }
     }
 }

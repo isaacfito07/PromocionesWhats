@@ -33,6 +33,8 @@
             cargarExcelToolStripMenuItem = new ToolStripMenuItem();
             eJECUTARToolStripMenuItem = new ToolStripMenuItem();
             exportarToolStripMenuItem = new ToolStripMenuItem();
+            toolStripSeparator1 = new ToolStripSeparator();
+            enviadosToolStripMenuItem = new ToolStripMenuItem();
             mensajesPersonalizadosToolStripMenuItem = new ToolStripMenuItem();
             dETENERPROCESOToolStripMenuItem = new ToolStripMenuItem();
             toolStripContainer1 = new ToolStripContainer();
@@ -54,10 +56,10 @@
             // 
             // btnCargaExcel
             // 
-            btnCargaExcel.DropDownItems.AddRange(new ToolStripItem[] { cargarExcelToolStripMenuItem, eJECUTARToolStripMenuItem, exportarToolStripMenuItem });
+            btnCargaExcel.DropDownItems.AddRange(new ToolStripItem[] { cargarExcelToolStripMenuItem, eJECUTARToolStripMenuItem, exportarToolStripMenuItem, toolStripSeparator1, enviadosToolStripMenuItem });
             btnCargaExcel.Name = "btnCargaExcel";
-            btnCargaExcel.Size = new Size(84, 20);
-            btnCargaExcel.Text = "Cargar Excel";
+            btnCargaExcel.Size = new Size(82, 20);
+            btnCargaExcel.Text = "\U0001f7e2 Acciones";
             // 
             // cargarExcelToolStripMenuItem
             // 
@@ -80,6 +82,18 @@
             exportarToolStripMenuItem.Text = "Exportar";
             exportarToolStripMenuItem.Click += exportarToolStripMenuItem_Click;
             // 
+            // toolStripSeparator1
+            // 
+            toolStripSeparator1.Name = "toolStripSeparator1";
+            toolStripSeparator1.Size = new Size(177, 6);
+            // 
+            // enviadosToolStripMenuItem
+            // 
+            enviadosToolStripMenuItem.Name = "enviadosToolStripMenuItem";
+            enviadosToolStripMenuItem.Size = new Size(180, 22);
+            enviadosToolStripMenuItem.Text = "Enviados";
+            enviadosToolStripMenuItem.Click += enviadosToolStripMenuItem_Click;
+            // 
             // mensajesPersonalizadosToolStripMenuItem
             // 
             mensajesPersonalizadosToolStripMenuItem.Name = "mensajesPersonalizadosToolStripMenuItem";
@@ -90,7 +104,7 @@
             // dETENERPROCESOToolStripMenuItem
             // 
             dETENERPROCESOToolStripMenuItem.Name = "dETENERPROCESOToolStripMenuItem";
-            dETENERPROCESOToolStripMenuItem.Size = new Size(137, 20);
+            dETENERPROCESOToolStripMenuItem.Size = new Size(138, 20);
             dETENERPROCESOToolStripMenuItem.Text = "🔴 DETENER PROCESO";
             dETENERPROCESOToolStripMenuItem.Click += dETENERPROCESOToolStripMenuItem_Click;
             // 
@@ -160,5 +174,7 @@
         private ToolStripMenuItem eJECUTARToolStripMenuItem;
         private ToolStripMenuItem exportarToolStripMenuItem;
         private ToolStripMenuItem dETENERPROCESOToolStripMenuItem;
+        private ToolStripSeparator toolStripSeparator1;
+        private ToolStripMenuItem enviadosToolStripMenuItem;
     }
 }
