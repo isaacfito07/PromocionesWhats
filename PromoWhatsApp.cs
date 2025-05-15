@@ -244,7 +244,7 @@ namespace PromWhats
                                 return;
                             }
                             SendKeys.Send("{ESC}");
-                            await Task.Delay(3000);
+                            await Task.Delay(4000);
                             if (cancelarProceso)
                             {
                                 this.TopMost = false;
