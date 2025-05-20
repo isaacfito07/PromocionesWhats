@@ -64,33 +64,33 @@
             // cargarExcelToolStripMenuItem
             // 
             cargarExcelToolStripMenuItem.Name = "cargarExcelToolStripMenuItem";
-            cargarExcelToolStripMenuItem.Size = new Size(180, 22);
+            cargarExcelToolStripMenuItem.Size = new Size(139, 22);
             cargarExcelToolStripMenuItem.Text = "Cargar Excel";
             cargarExcelToolStripMenuItem.Click += cargarExcelToolStripMenuItem_Click;
             // 
             // eJECUTARToolStripMenuItem
             // 
             eJECUTARToolStripMenuItem.Name = "eJECUTARToolStripMenuItem";
-            eJECUTARToolStripMenuItem.Size = new Size(180, 22);
+            eJECUTARToolStripMenuItem.Size = new Size(139, 22);
             eJECUTARToolStripMenuItem.Text = "EJECUTAR";
             eJECUTARToolStripMenuItem.Click += eJECUTARToolStripMenuItem_Click;
             // 
             // exportarToolStripMenuItem
             // 
             exportarToolStripMenuItem.Name = "exportarToolStripMenuItem";
-            exportarToolStripMenuItem.Size = new Size(180, 22);
+            exportarToolStripMenuItem.Size = new Size(139, 22);
             exportarToolStripMenuItem.Text = "Exportar";
             exportarToolStripMenuItem.Click += exportarToolStripMenuItem_Click;
             // 
             // toolStripSeparator1
             // 
             toolStripSeparator1.Name = "toolStripSeparator1";
-            toolStripSeparator1.Size = new Size(177, 6);
+            toolStripSeparator1.Size = new Size(136, 6);
             // 
             // enviadosToolStripMenuItem
             // 
             enviadosToolStripMenuItem.Name = "enviadosToolStripMenuItem";
-            enviadosToolStripMenuItem.Size = new Size(180, 22);
+            enviadosToolStripMenuItem.Size = new Size(139, 22);
             enviadosToolStripMenuItem.Text = "Enviados";
             enviadosToolStripMenuItem.Click += enviadosToolStripMenuItem_Click;
             // 
@@ -104,7 +104,7 @@
             // dETENERPROCESOToolStripMenuItem
             // 
             dETENERPROCESOToolStripMenuItem.Name = "dETENERPROCESOToolStripMenuItem";
-            dETENERPROCESOToolStripMenuItem.Size = new Size(138, 20);
+            dETENERPROCESOToolStripMenuItem.Size = new Size(137, 20);
             dETENERPROCESOToolStripMenuItem.Text = "🔴 DETENER PROCESO";
             dETENERPROCESOToolStripMenuItem.Click += dETENERPROCESOToolStripMenuItem_Click;
             // 
@@ -137,6 +137,7 @@
             GVExcel.SelectionMode = DataGridViewSelectionMode.CellSelect;
             GVExcel.Size = new Size(800, 401);
             GVExcel.TabIndex = 0;
+            GVExcel.KeyDown += GVExcel_KeyDown;
             // 
             // PromoWhats
             // 

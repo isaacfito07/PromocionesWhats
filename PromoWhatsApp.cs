@@ -20,6 +20,7 @@ namespace PromWhats
         {
             InitializeComponent();
             dETENERPROCESOToolStripMenuItem.Visible = false;
+            GVExcel.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
         }
 
         private void mensajesPersonalizadosToolStripMenuItem_Click(object sender, EventArgs e)
@@ -144,10 +145,12 @@ namespace PromWhats
                         return;
                     }
 
+                    GVExcel.ClearSelection(); // Limpia selección anterior
+                    row.Selected = true;
+                    GVExcel.FirstDisplayedScrollingRowIndex = row.Index; // Hace scroll
+
                     if (!row.IsNewRow)
                     {
-                        row.Selected = true;
-
                         string querySelect = "SELECT * FROM WhatsApp WHERE Celular = '" + row.Cells["CELULAR"].Value + "' AND Activo = 1 AND Fecha = '" + FechaHoy + "'";
                         DataTable dtConsula = this.sql.EjecutarConsulta(querySelect);
 
@@ -157,7 +160,7 @@ namespace PromWhats
                         }
                         else
                         {
-                            string numero = "52" + (row.Cells["CELULAR"].Value?.ToString()).Replace(" ",string.Empty).Replace("-",string.Empty);
+                            string numero = "52" + (row.Cells["CELULAR"].Value?.ToString()).Replace(" ", string.Empty).Replace("-", string.Empty);
                             string mensaje = row.Cells["cuerpoMensaje"].Value?.ToString();
 
                             string NombreContacto = row.Cells["NOMBRE (S)"].Value?.ToString();
@@ -170,7 +173,7 @@ namespace PromWhats
 
                             if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
                             {
-                                //Process.Start(new ProcessStartInfo(url) { UseShellExecute = true });
+                                Process.Start(new ProcessStartInfo(url) { UseShellExecute = true });
                             }
                             else if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
                             {
@@ -189,7 +192,7 @@ namespace PromWhats
                                 dETENERPROCESOToolStripMenuItem.Visible = false;
                                 return;
                             }
-                            
+
                             SendKeys.Send("{ENTER}");
                             await Task.Delay(3000);
                             if (cancelarProceso)
@@ -262,7 +265,7 @@ namespace PromWhats
 
                             foreach (var process in Process.GetProcessesByName("chrome"))
                             {
-                                //process.Kill();
+                                process.Kill();
                             }
                             await Task.Delay(5000);
                             if (cancelarProceso)
@@ -361,6 +364,15 @@ namespace PromWhats
 
             TextInfo textInfo = CultureInfo.CurrentCulture.TextInfo;
             return textInfo.ToTitleCase(input.ToLower());
+        }
+
+        private void GVExcel_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter || e.KeyCode == Keys.Escape)
+            {
+                e.Handled = true; // bloquea el comportamiento predeterminado
+                e.SuppressKeyPress = true; // evita que suene beep o se dispare más abajo
+            }
         }
     }
 }
