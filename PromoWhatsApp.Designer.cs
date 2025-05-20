@@ -30,7 +30,13 @@
         {
             menuStrip1 = new MenuStrip();
             btnCargaExcel = new ToolStripMenuItem();
+            cargarExcelToolStripMenuItem = new ToolStripMenuItem();
+            eJECUTARToolStripMenuItem = new ToolStripMenuItem();
+            exportarToolStripMenuItem = new ToolStripMenuItem();
+            toolStripSeparator1 = new ToolStripSeparator();
+            enviadosToolStripMenuItem = new ToolStripMenuItem();
             mensajesPersonalizadosToolStripMenuItem = new ToolStripMenuItem();
+            dETENERPROCESOToolStripMenuItem = new ToolStripMenuItem();
             toolStripContainer1 = new ToolStripContainer();
             GVExcel = new DataGridView();
             menuStrip1.SuspendLayout();
@@ -41,7 +47,7 @@
             // 
             // menuStrip1
             // 
-            menuStrip1.Items.AddRange(new ToolStripItem[] { btnCargaExcel, mensajesPersonalizadosToolStripMenuItem });
+            menuStrip1.Items.AddRange(new ToolStripItem[] { btnCargaExcel, mensajesPersonalizadosToolStripMenuItem, dETENERPROCESOToolStripMenuItem });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
             menuStrip1.Size = new Size(800, 24);
@@ -50,10 +56,43 @@
             // 
             // btnCargaExcel
             // 
+            btnCargaExcel.DropDownItems.AddRange(new ToolStripItem[] { cargarExcelToolStripMenuItem, eJECUTARToolStripMenuItem, exportarToolStripMenuItem, toolStripSeparator1, enviadosToolStripMenuItem });
             btnCargaExcel.Name = "btnCargaExcel";
-            btnCargaExcel.Size = new Size(84, 20);
-            btnCargaExcel.Text = "Cargar Excel";
-            btnCargaExcel.Click += btnCargaExcel_Click;
+            btnCargaExcel.Size = new Size(82, 20);
+            btnCargaExcel.Text = "\U0001f7e2 Acciones";
+            // 
+            // cargarExcelToolStripMenuItem
+            // 
+            cargarExcelToolStripMenuItem.Name = "cargarExcelToolStripMenuItem";
+            cargarExcelToolStripMenuItem.Size = new Size(139, 22);
+            cargarExcelToolStripMenuItem.Text = "Cargar Excel";
+            cargarExcelToolStripMenuItem.Click += cargarExcelToolStripMenuItem_Click;
+            // 
+            // eJECUTARToolStripMenuItem
+            // 
+            eJECUTARToolStripMenuItem.Name = "eJECUTARToolStripMenuItem";
+            eJECUTARToolStripMenuItem.Size = new Size(139, 22);
+            eJECUTARToolStripMenuItem.Text = "EJECUTAR";
+            eJECUTARToolStripMenuItem.Click += eJECUTARToolStripMenuItem_Click;
+            // 
+            // exportarToolStripMenuItem
+            // 
+            exportarToolStripMenuItem.Name = "exportarToolStripMenuItem";
+            exportarToolStripMenuItem.Size = new Size(139, 22);
+            exportarToolStripMenuItem.Text = "Exportar";
+            exportarToolStripMenuItem.Click += exportarToolStripMenuItem_Click;
+            // 
+            // toolStripSeparator1
+            // 
+            toolStripSeparator1.Name = "toolStripSeparator1";
+            toolStripSeparator1.Size = new Size(136, 6);
+            // 
+            // enviadosToolStripMenuItem
+            // 
+            enviadosToolStripMenuItem.Name = "enviadosToolStripMenuItem";
+            enviadosToolStripMenuItem.Size = new Size(139, 22);
+            enviadosToolStripMenuItem.Text = "Enviados";
+            enviadosToolStripMenuItem.Click += enviadosToolStripMenuItem_Click;
             // 
             // mensajesPersonalizadosToolStripMenuItem
             // 
@@ -61,6 +100,13 @@
             mensajesPersonalizadosToolStripMenuItem.Size = new Size(149, 20);
             mensajesPersonalizadosToolStripMenuItem.Text = "Mensajes Personalizados";
             mensajesPersonalizadosToolStripMenuItem.Click += mensajesPersonalizadosToolStripMenuItem_Click;
+            // 
+            // dETENERPROCESOToolStripMenuItem
+            // 
+            dETENERPROCESOToolStripMenuItem.Name = "dETENERPROCESOToolStripMenuItem";
+            dETENERPROCESOToolStripMenuItem.Size = new Size(137, 20);
+            dETENERPROCESOToolStripMenuItem.Text = "🔴 DETENER PROCESO";
+            dETENERPROCESOToolStripMenuItem.Click += dETENERPROCESOToolStripMenuItem_Click;
             // 
             // toolStripContainer1
             // 
@@ -91,6 +137,7 @@
             GVExcel.SelectionMode = DataGridViewSelectionMode.CellSelect;
             GVExcel.Size = new Size(800, 401);
             GVExcel.TabIndex = 0;
+            GVExcel.KeyDown += GVExcel_KeyDown;
             // 
             // PromoWhats
             // 
@@ -124,5 +171,11 @@
         private ToolStripContainer toolStripContainer1;
         private DataGridView GVExcel;
         private ToolStripMenuItem mensajesPersonalizadosToolStripMenuItem;
+        private ToolStripMenuItem cargarExcelToolStripMenuItem;
+        private ToolStripMenuItem eJECUTARToolStripMenuItem;
+        private ToolStripMenuItem exportarToolStripMenuItem;
+        private ToolStripMenuItem dETENERPROCESOToolStripMenuItem;
+        private ToolStripSeparator toolStripSeparator1;
+        private ToolStripMenuItem enviadosToolStripMenuItem;
     }
 }
