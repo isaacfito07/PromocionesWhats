@@ -33,17 +33,33 @@ namespace PromWhats
         // INSERT, UPDATE, DELETE → No devuelven resultados
         public int EjecutarComando(string sql)
         {
-            using var conexion = new SqliteConnection(_cadenaConexion);
-            conexion.Open();
+            const int MAX_RETRIES = 3;
+            const int DELAY_MS = 200;
 
-            using var comando = conexion.CreateCommand();
-            comando.CommandText = sql;
+            for (int intento = 1; intento <= MAX_RETRIES; intento++)
+            {
+                try
+                {
+                    using var conexion = new SqliteConnection(_cadenaConexion);
+                    conexion.Open();
 
-            // Devuelve número de filas afectadas
-            int Rows = comando.ExecuteNonQuery();
-            conexion.Close();
-            return Rows;
+                    using var comando = conexion.CreateCommand();
+                    comando.CommandText = sql;
+
+                    return comando.ExecuteNonQuery();
+                }
+                catch (SqliteException ex) when (ex.SqliteErrorCode == 5)
+                {
+                    if (intento == MAX_RETRIES)
+                        throw; // si ya lo intentaste varias veces, relanza la excepción
+
+                    Thread.Sleep(DELAY_MS); // espera un poco antes de reintentar
+                }
+            }
+
+            return 0; // no debería llegar aquí
         }
+
 
         // Devuelve un valor escalar (ej: COUNT, MAX, etc.)
         public object EjecutarEscalar(string sql)

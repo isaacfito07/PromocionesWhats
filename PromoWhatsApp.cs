@@ -27,6 +27,7 @@ namespace PromWhats
         {
             ListaMensajes listaMensajes = new ListaMensajes();
             listaMensajes.ShowDialog();
+            GVExcel.DataSource = null;
         }
 
         private void cargarExcelToolStripMenuItem_Click(object sender, EventArgs e)
@@ -167,7 +168,10 @@ namespace PromWhats
                             NombreContacto = CapitalizeEachWord(NombreContacto);
                             mensaje = mensaje.Replace("[Nombre]", NombreContacto);
 
-                            Clipboard.SetText(mensaje);
+                            if (mensaje != string.Empty)
+                            {
+                                Clipboard.SetText(mensaje);
+                            }
 
                             string url = "https://api.whatsapp.com/send?phone=" + numero + "&text=" + "" + "&type=phone_number&app_absent=0";
 
@@ -192,7 +196,10 @@ namespace PromWhats
                                 dETENERPROCESOToolStripMenuItem.Visible = false;
                                 return;
                             }
-
+                            SendKeys.Send("{LEFT}");
+                            await Task.Delay(1000);
+                            SendKeys.Send("{ENTER}");
+                            await Task.Delay(3000);
                             SendKeys.Send("{ENTER}");
                             await Task.Delay(3000);
                             if (cancelarProceso)
@@ -202,7 +209,10 @@ namespace PromWhats
                                 dETENERPROCESOToolStripMenuItem.Visible = false;
                                 return;
                             }
-                            SendKeys.Send("^v");
+                            if (mensaje != string.Empty)
+                            {
+                                SendKeys.Send("^v");
+                            }
 
                             string RutaImagen = row.Cells["rutaImagen"].Value.ToString();
                             if (!string.IsNullOrEmpty(RutaImagen))
@@ -225,6 +235,9 @@ namespace PromWhats
 
                             SendKeys.Send("{ENTER}");
                             row.Cells["Status"].Value = "ENVIADO";
+
+                            string queryDelete = "DELETE FROM WhatsApp WHERE Celular = '" + row.Cells["CELULAR"].Value + "' AND Activo = 0 AND Fecha = '" + FechaHoy + "'";
+                            this.sql.EjecutarComando(queryDelete);
 
                             string queryInsert = @"INSERT INTO WhatsApp (
                             Nombre,
@@ -263,7 +276,7 @@ namespace PromWhats
                                 return;
                             }
 
-                            foreach (var process in Process.GetProcessesByName("chrome"))
+                            foreach (var process in Process.GetProcessesByName("msedge"))
                             {
                                 process.Kill();
                             }
